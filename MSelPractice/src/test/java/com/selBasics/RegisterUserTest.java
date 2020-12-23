@@ -12,7 +12,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class RegisterUserTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		WebDriverManager.chromedriver().setup();
 		WebDriver chromeDriver = new ChromeDriver();
@@ -24,6 +24,7 @@ public class RegisterUserTest {
 		chromeDriver.findElement(By.id("email_create")).sendKeys(email);
 		chromeDriver.findElement(By.id("SubmitCreate")).click();
 		//chromeDriver.findElement(By.id("id_gender1")).click();
+		Thread.sleep(2000);
 		WebElement radio1 = chromeDriver.findElement(By.id("id_gender1"));
 		radio1.click();
 		chromeDriver.findElement(By.id("customer_firstname")).sendKeys("Amit");
@@ -33,27 +34,30 @@ public class RegisterUserTest {
 		WebElement month = chromeDriver.findElement(By.id("months"));
 		WebElement year = chromeDriver.findElement(By.id("years"));
 		Select selDay = new Select(day);
-		selDay.selectByValue("1");
+		selDay.selectByValue("5");
 		Select selMonth = new Select(month);
-		selMonth.selectByValue("Septembar");
+		selMonth.selectByValue("9");
 		Select selYear = new Select(year);
-		selYear.selectByValue("1991");
+		selYear.selectByValue("2002");
 		chromeDriver.findElement(By.id("newsletter")).click();
 		chromeDriver.findElement(By.id("optin")).click();
 		chromeDriver.findElement(By.id("company")).sendKeys("HDFC Bank");
 		chromeDriver.findElement(By.id("address1")).sendKeys("Mumbai Kanjurmarg");
 		chromeDriver.findElement(By.id("city")).sendKeys("Mumbai");
-		WebElement state = chromeDriver.findElement(By.id("uniform-id_state"));
+		WebElement state = chromeDriver.findElement(By.id("id_state"));
 		Select selState = new Select(state);
 		selState.selectByIndex(3);
-		chromeDriver.findElement(By.id("postcode")).sendKeys("421306");
+		chromeDriver.findElement(By.id("postcode")).sendKeys("42306");
 		WebElement country = chromeDriver.findElement(By.id("id_country"));
 		Select selCountry = new Select(country);
 		selCountry.selectByIndex(1);
 		chromeDriver.findElement(By.id("other")).sendKeys("421306 other information");
 		chromeDriver.findElement(By.id("phone")).sendKeys("022 3075 1771");
 		chromeDriver.findElement(By.id("phone_mobile")).sendKeys("9022469317");
-		chromeDriver.findElement(By.id("alias")).sendKeys("No address");
+		WebElement add = chromeDriver.findElement(By.id("alias"));
+		add.clear();
+		add.sendKeys("No address");
+		Thread.sleep(5000);
 		chromeDriver.findElement(By.id("submitAccount")).click();
 	}
 
